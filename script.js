@@ -104,7 +104,7 @@ function editDog(index) {
     document.getElementById("birthday").value = dog.birthday || "";
     document.getElementById("temperature").value = dog.temperature || "";
     document.getElementById("weight").value = dog.weight || "";
-    document.getElementById("furColor").value = dog.furColor || "";
+    document.getElementById("breed").value = dog.breed || "";  // ←ここ！！
     document.getElementById("microchip").value = dog.microchip || "";
     document.getElementById("photo").value = dog.photo || "";
     document.getElementById("appointment").value = dog.appointment || "";
