@@ -76,3 +76,21 @@ li::before {
     content: "🐾 ";
     margin-right: 8px;
 }
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-row label {
+    width: 150px;
+    font-weight: bold;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

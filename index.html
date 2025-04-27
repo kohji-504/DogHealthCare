@@ -11,33 +11,49 @@
         <h1>犬の健康管理アプリ</h1>
         <div class="form-container">
             <form id="dogForm">
-                <label for="dogName">犬の名前:</label>
-                <input type="text" id="dogName" required>
-
-                <label for="birthday">生年月日:</label>
-                <input type="date" id="birthday">
-
-                <label for="temperature">体温 (℃):</label>
-                <input type="number" id="temperature" step="0.1">
-
-                <label for="weight">体重 (kg):</label>
-                <input type="number" id="weight" step="0.1">
-
-                <label for="furColor">毛色:</label>
-                <input type="text" id="furColor">
-
-                <label for="microchip">マイクロチップ番号:</label>
-                <input type="text" id="microchip">
-
-                <label for="photo">顔写真のURL:</label>
-                <input type="url" id="photo">
-
-                <label for="appointment">通院日:</label>  <!-- ⭐️ これを追加！ -->
-                <input type="date" id="appointment">
-
+                <div class="form-row">
+                    <label for="dogName">犬の名前:</label>
+                    <input type="text" id="dogName" required>
+                </div>
+            
+                <div class="form-row">
+                    <label for="birthday">生年月日:</label>
+                    <input type="date" id="birthday">
+                </div>
+            
+                <div class="form-row">
+                    <label for="temperature">体温 (℃):</label>
+                    <input type="number" id="temperature" step="0.1">
+                </div>
+            
+                <div class="form-row">
+                    <label for="weight">体重 (kg):</label>
+                    <input type="number" id="weight" step="0.1">
+                </div>
+            
+                <div class="form-row">
+                    <label for="furColor">毛色:</label>
+                    <input type="text" id="furColor">
+                </div>
+            
+                <div class="form-row">
+                    <label for="microchip">マイクロチップ番号:</label>
+                    <input type="text" id="microchip">
+                </div>
+            
+                <div class="form-row">
+                    <label for="photo">顔写真のURL:</label>
+                    <input type="url" id="photo">
+                </div>
+            
+                <div class="form-row">
+                    <label for="appointment">通院日:</label>
+                    <input type="date" id="appointment" required>
+                </div>
+            
                 <br>
                 <button type="button" id="saveButton">保存</button>
-            </form>
+            </form>      
         </div>
 
         <div class="list-container">
