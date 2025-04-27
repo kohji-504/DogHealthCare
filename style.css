@@ -59,3 +59,24 @@ li::before {
     content: "🐾 ";
     margin-right: 8px;
 }
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #FFEFD5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container, .list-container {
+    margin-top: 20px;
+    background: #FFF;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #6B4C3B;
+}
