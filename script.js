@@ -56,7 +56,7 @@ function displayDogs() {
         li.innerHTML = `
             <div>
                 ${dog.photo ? `<img src="${dog.photo}" alt="顔写真" style="width:80px;height:80px;border-radius:50%;">` : ""}
-        <p><strong>${dog.name}</strong>（${dog.breed || "犬種不明"}）</p>  <!-- ←ここでbreedを表示する！ -->
+                <p><strong>${dog.name}</strong>（${dog.breed || "犬種不明"}）</p>  <!-- ←ここでbreedを表示する！ -->
                 <p>生年月日: ${dog.birthday || "不明"}</p>
                 <p>体温: ${dog.temperature ? dog.temperature + "℃" : "不明"}</p>
                 <p>体重: ${dog.weight ? dog.weight + "kg" : "不明"}</p>
