@@ -4,28 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>犬の健康管理アプリ</title>
-    <link rel="stylesheet" href="style.css?v=1">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>犬の健康管理アプリ</h1>
         <div class="form-container">
-            <h2>犬のプロフィール登録</h2>
             <form id="dogForm">
                 <label for="dogName">犬の名前:</label>
-                <input type="text" id="dogName" name="dogName" required>
-                <br>
-                <label for="appointment">通院日:</label>
-                <input type="date" id="appointment" name="appointment" required>
+                <input type="text" id="dogName" required>
+
+                <label for="birthday">生年月日:</label>
+                <input type="date" id="birthday">
+
+                <label for="temperature">体温 (℃):</label>
+                <input type="number" id="temperature" step="0.1">
+
+                <label for="weight">体重 (kg):</label>
+                <input type="number" id="weight" step="0.1">
+
+                <label for="furColor">毛色:</label>
+                <input type="text" id="furColor">
+
+                <label for="microchip">マイクロチップ番号:</label>
+                <input type="text" id="microchip">
+
+                <label for="photo">顔写真のURL:</label>
+                <input type="url" id="photo">
+
                 <br>
                 <button type="button" id="saveButton">保存</button>
             </form>
         </div>
+
         <div class="list-container">
             <h2>犬のプロフィール一覧</h2>
             <ul id="dogList"></ul>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

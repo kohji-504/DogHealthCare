@@ -1,51 +1,82 @@
-// ページを開いたときに実行される処理
 window.onload = function() {
     displayDogs();
     const saveButton = document.getElementById("saveButton");
     saveButton.onclick = saveNewDog;
 };
 
-// 新しくデータを保存する関数
+// 新規保存
 function saveNewDog() {
-    const dogName = document.getElementById("dogName").value;
-    const appointment = document.getElementById("appointment").value;
+    const dog = getDogDataFromForm();
 
-    if (dogName === "" || appointment === "") {
-        alert("すべてのフィールドを入力してください。");
+    if (!dog.name || !dog.appointment) {
+        alert("必須項目（犬の名前・通院日）を入力してください。");
         return;
     }
 
     let dogs = JSON.parse(localStorage.getItem("dogs")) || [];
-    dogs.push({ name: dogName, appointment: appointment });
+    dogs.push(dog);
     localStorage.setItem("dogs", JSON.stringify(dogs));
 
     alert("データを保存しました！");
+    resetForm();
     displayDogs();
-    document.getElementById("dogForm").reset();
 }
 
-// 登録済みのデータを表示する関数
-function displayDogs() {
+// 編集保存
+function updateDog(index) {
+    const dog = getDogDataFromForm();
+
+    if (!dog.name || !dog.appointment) {
+        alert("必須項目（犬の名前・通院日）を入力してください。");
+        return;
+    }
+
     let dogs = JSON.parse(localStorage.getItem("dogs")) || [];
+    dogs[index] = dog;
+    localStorage.setItem("dogs", JSON.stringify(dogs));
+
+    alert("データを更新しました！");
+    resetForm();
+
+    const saveButton = document.getElementById("saveButton");
+    saveButton.textContent = "保存";
+    saveButton.onclick = saveNewDog;
+
+    displayDogs();
+}
+
+// リスト表示
+function displayDogs() {
+    const dogs = JSON.parse(localStorage.getItem("dogs")) || [];
     const dogList = document.getElementById("dogList");
     dogList.innerHTML = "";
 
     dogs.forEach((dog, index) => {
-        let li = document.createElement("li");
-        li.textContent = `${dog.name} - 通院日: ${dog.appointment}`;
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <div>
+                ${dog.photo ? `<img src="${dog.photo}" alt="顔写真" style="width:80px;height:80px;border-radius:50%;">` : ""}
+                <p><strong>${dog.name}</strong>（${dog.furColor || "毛色不明"}）</p>
+                <p>生年月日: ${dog.birthday || "不明"}</p>
+                <p>体温: ${dog.temperature ? dog.temperature + "℃" : "不明"}</p>
+                <p>体重: ${dog.weight ? dog.weight + "kg" : "不明"}</p>
+                <p>通院日: ${dog.appointment || "未定"}</p>
+                <p>マイクロチップ番号: ${dog.microchip || "なし"}</p>
+            </div>
+        `;
 
         // 編集ボタン
-        let editButton = document.createElement("button");
+        const editButton = document.createElement("button");
         editButton.textContent = "編集";
-        editButton.style.marginLeft = "10px";
+        editButton.style.margin = "5px";
         editButton.onclick = function() {
             editDog(index);
         };
 
         // 削除ボタン
-        let deleteButton = document.createElement("button");
+        const deleteButton = document.createElement("button");
         deleteButton.textContent = "削除";
-        deleteButton.style.marginLeft = "10px";
+        deleteButton.style.margin = "5px";
         deleteButton.onclick = function() {
             deleteDog(index);
         };
@@ -56,24 +87,28 @@ function displayDogs() {
     });
 }
 
-// データを削除する関数
+// 削除
 function deleteDog(index) {
     let dogs = JSON.parse(localStorage.getItem("dogs")) || [];
-    dogs.splice(index, 1); // index番目の1件を削除
+    dogs.splice(index, 1);
     localStorage.setItem("dogs", JSON.stringify(dogs));
-    displayDogs(); // リストを再描画
+    displayDogs();
 }
 
-// データを編集するためにフォームにセットする関数
+// 編集開始
 function editDog(index) {
-    let dogs = JSON.parse(localStorage.getItem("dogs")) || [];
+    const dogs = JSON.parse(localStorage.getItem("dogs")) || [];
     const dog = dogs[index];
 
-    // フォームに現在のデータを入れる
     document.getElementById("dogName").value = dog.name;
-    document.getElementById("appointment").value = dog.appointment;
+    document.getElementById("birthday").value = dog.birthday || "";
+    document.getElementById("temperature").value = dog.temperature || "";
+    document.getElementById("weight").value = dog.weight || "";
+    document.getElementById("furColor").value = dog.furColor || "";
+    document.getElementById("microchip").value = dog.microchip || "";
+    document.getElementById("photo").value = dog.photo || "";
+    document.getElementById("appointment").value = dog.appointment || "";
 
-    // 保存ボタンを「更新モード」に切り替える
     const saveButton = document.getElementById("saveButton");
     saveButton.textContent = "更新";
     saveButton.onclick = function() {
@@ -81,29 +116,21 @@ function editDog(index) {
     };
 }
 
-// データを更新保存する関数
-function updateDog(index) {
-    let dogs = JSON.parse(localStorage.getItem("dogs")) || [];
+// フォームからデータをまとめて取る
+function getDogDataFromForm() {
+    return {
+        name: document.getElementById("dogName").value,
+        birthday: document.getElementById("birthday").value,
+        temperature: document.getElementById("temperature").value,
+        weight: document.getElementById("weight").value,
+        furColor: document.getElementById("furColor").value,
+        microchip: document.getElementById("microchip").value,
+        photo: document.getElementById("photo").value,
+        appointment: document.getElementById("appointment").value
+    };
+}
 
-    const dogName = document.getElementById("dogName").value;
-    const appointment = document.getElementById("appointment").value;
-
-    if (dogName === "" || appointment === "") {
-        alert("すべてのフィールドを入力してください。");
-        return;
-    }
-
-    // データ更新
-    dogs[index] = { name: dogName, appointment: appointment };
-    localStorage.setItem("dogs", JSON.stringify(dogs));
-
-    alert("データを更新しました！");
-
-    // 保存ボタンを元に戻す
-    const saveButton = document.getElementById("saveButton");
-    saveButton.textContent = "保存";
-    saveButton.onclick = saveNewDog;
-
-    displayDogs();
+// フォームリセット
+function resetForm() {
     document.getElementById("dogForm").reset();
 }
