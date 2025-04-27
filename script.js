@@ -123,7 +123,7 @@ function getDogDataFromForm() {
         birthday: document.getElementById("birthday").value,
         temperature: document.getElementById("temperature").value,
         weight: document.getElementById("weight").value,
-        furColor: document.getElementById("furColor").value,
+        breed: document.getElementById("breed").value, // ここを修正！！
         microchip: document.getElementById("microchip").value,
         photo: document.getElementById("photo").value,
         appointment: document.getElementById("appointment").value
