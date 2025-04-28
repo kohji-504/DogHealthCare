@@ -1,5 +1,5 @@
 // WebアプリとしてデプロイしたGASのURLをここに貼ってください
-const GAS_URL = 'ここにあなたのデプロイURLを貼る';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzPkHtL7WJZb0Y6Op5x7itTFAiiTQnaFKuVJegOVgmLOskcYrV8cdscoL_lAA2Cx4UH/exec';
 
 // ページを開いたときに実行
 window.onload = function() {
